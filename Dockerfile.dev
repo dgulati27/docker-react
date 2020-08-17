@@ -1,0 +1,9 @@
+FROM node:alpine
+#creating app directory
+WORKDIR '/app'
+#copy pacakge.json to app directory
+COPY package.json .
+RUN npm install
+#After dependencies installed, copy everything else from project directory to dockerfile
+COPY . .
+CMD ["npm", "run", "start"]
