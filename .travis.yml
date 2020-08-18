@@ -9,3 +9,18 @@ before install:
 #Running test and exiting automatically
 script: 
     - docker run -e CI=true dgulati27/docker-react npm run test
+
+deploy:
+    provider: elasticbeanstalk
+    region: 
+    app: "dimpy-docker"
+    env: "dimpy-docker-env"
+    bucket name: "elasticbeanstalk-us-east-1-700678334419"
+    bucket path: "dimpy-docker"
+
+    # Only deploy when 'master branch' gets updated, not the development branch
+    on:
+        branch: master
+    access_key_id: $Access_key_ID
+    secret_access_key: 
+        secure: "$Secret_access_key"
