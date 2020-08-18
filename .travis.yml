@@ -1,0 +1,11 @@
+language: generic 
+sudo: required
+services:
+    - docker
+
+before install:
+    - docker build -t dgulati27/docker-react -f dockerfile.dev .
+
+#Running test and exiting automatically
+script: 
+    - docker run -e CI=true dgulati27/docker-react npm run test
